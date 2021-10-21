@@ -49,40 +49,18 @@ void TimerSet(unsigned long M) {
 	_avr_timer_cntcurr = _avr_timer_M;
 }
 
-////----------------------------------------/timer.h----------------------------------------------////
+//----------------------------------------/timer.h----------------------------------------------//
 
-enum States{state1, state2, state3}state;
+enum States{california, nevada, DC}state;
 unsigned char out = 0;
 
 
 void Tick(){
-  switch(state) {
-    case state1:
-      out = 1;
-      //--------------------------------------------------------
-      state = state2;
-    break;
-
-    case state2:
-      out = 2;
-      //--------------------------------------------------------
-      state = state3;
-    break;
-
-    case state3:
-      out = 4;
-      //-------------------------------------------------------
-      state = state1;
-    break;
-  }
-
-
-
-  // if(state == state1){
-  //     if((out==4) || (out==0)){ out = 1; }
-  //     else{out = 2*out; }
-  // }
-
+    if(out==0){ out++; }
+    if(state == california){
+        if(out == 4){ out = 1; }
+        else{out = out*2; }
+    }
 }
 
 
@@ -92,7 +70,7 @@ int main(void) {
     TimerSet(1000);
     TimerOn();
 
-    state = state1;
+    state = california;
 
 
     while (1) {
