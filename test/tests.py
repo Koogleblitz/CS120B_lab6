@@ -17,11 +17,11 @@
 tests = [ 
     
     {
-        'description': 'first iteration',
+        'description': '1 release, toggle off',
         'steps': 
             [ 
                 
-                {'inputs': [('PINA', 0)],'iterations': 1, 'expected': [('PORTB',1)]}, # Set PIN to val then run one iteration
+                {'inputs': [('PINA', 1)],'iterations': 1, 'expected': [('PORTB',1)]}, # Set PIN to val then run one iteration
        
             ],
         'expected': [('PORTB',1)],
@@ -30,11 +30,11 @@ tests = [
 #--------------------------------------------------------------------------------------
 
     {
-        'description': 'second ',
+        'description': '2 release, toggle off ',
         'steps': 
             [ 
                 
-                {'inputs': [('PINA', 0)],'iterations': 1, 'expected': [('PORTB',2)]}, # Set PIN to val then run one iteration
+                {'inputs': [('PINA', 1)],'iterations': 1, 'expected': [('PORTB',2)]}, # Set PIN to val then run one iteration
        
             ],
         'expected': [('PORTB',2)],
@@ -43,7 +43,20 @@ tests = [
 #--------------------------------------------------------------------------------------
 
 {
-        'description': 'third',
+        'description': '3 release, toggle off',
+        'steps': 
+            [ 
+                
+                {'inputs': [('PINA', 1)],'iterations': 1, 'expected': [('PORTB',4)]}, # Set PIN to val then run one iteration
+       
+            ],
+        'expected': [('PORTB',4)],
+    },
+
+#--------------------------------------------------------------------------------------
+
+    {
+        'description': '4 press, toggle on ',
         'steps': 
             [ 
                 
@@ -54,49 +67,83 @@ tests = [
     },
 
 #--------------------------------------------------------------------------------------
-
     {
-        'description': 'fourth ',
+        'description': '5 release, toggle still on ',
         'steps': 
             [ 
                 
-                {'inputs': [('PINA', 0)],'iterations': 1, 'expected': [('PORTB',1)]}, # Set PIN to val then run one iteration
+                {'inputs': [('PINA', 1)],'iterations': 1, 'expected': [('PORTB',4)]}, # Set PIN to val then run one iteration
        
             ],
-        'expected': [('PORTB',1)],
+        'expected': [('PORTB',4)],
     },
 
 #--------------------------------------------------------------------------------------
 {
-        'description': 'fifth ',
+        'description': '6 release, toggle still on ',
         'steps': 
             [ 
                 
-                {'inputs': [('PINA', 0)],'iterations': 1, 'expected': [('PORTB',2)]}, # Set PIN to val then run one iteration
+                {'inputs': [('PINA', 1)],'iterations': 1, 'expected': [('PORTB',4)]}, # Set PIN to val then run one iteration
+       
+            ],
+        'expected': [('PORTB',4)],
+    },
+
+#--------------------------------------------------------------------------------------
+{
+        'description': '7 press, toggle off ',
+        'steps': 
+            [ 
+                
+                {'inputs': [('PINA', 0)],'iterations': 1, 'expected': [('PORTB',4)]}, # Set PIN to val then run one iteration
+       
+            ],
+        'expected': [('PORTB',4)],
+    },
+
+#--------------------------------------------------------------------------------------
+{
+        'description': '8 release, toggle still off, restart cycle ',
+        'steps': 
+            [ 
+                
+                {'inputs': [('PINA', 1)],'iterations': 1, 'expected': [('PORTB',1)]}, # Set PIN to val then run one iteration
+       
+            ],
+        'expected': [('PORTB',1)],
+},
+
+#--------------------------------------------------------------------------------------
+{
+        'description': '9 release , toggle still off ',
+        'steps': 
+            [ 
+                
+                {'inputs': [('PINA', 1)],'iterations': 1, 'expected': [('PORTB',2)]}, # Set PIN to val then run one iteration
        
             ],
         'expected': [('PORTB',2)],
     },
 
 #--------------------------------------------------------------------------------------
-
     
 
 
 
-    {
-        'description': 'its about time. worry about this one later',
-        'steps': 
-            [ 
-                {'inputs': [('PINA',0)], 'time': 300, 'expected': [('PORTB',1)]},
-                {'inputs': [('PINA',0)], 'time': 1000, 'expected': [('PORTB',2)]},
-                {'inputs': [('PINA',0)], 'time': 1000, 'expected': [('PORTB',4)]},
-               # {'inputs': [('PINA',0)], 'time': 1000, 'expected': [('PORTB',1)]},
-               # {'inputs': [('PINA',0)], 'time': 1000, 'expected': [('PORTB',2)]},
-                
-            ],
-        'expected': [('PORTB',2)],
-    },
+#    {
+#       'description': 'its about time. worry about this one later',
+#        'steps': 
+#            [ 
+#                {'inputs': [('PINA',0)], 'time': 300, 'expected': [('PORTB',1)]},
+#                {'inputs': [('PINA',0)], 'time': 1000, 'expected': [('PORTB',2)]},
+#                {'inputs': [('PINA',0)], 'time': 1000, 'expected': [('PORTB',4)]},
+#                {'inputs': [('PINA',0)], 'time': 1000, 'expected': [('PORTB',1)]},
+#                {'inputs': [('PINA',0)], 'time': 1000, 'expected': [('PORTB',2)]},
+#                
+#            ],
+#        'expected': [('PORTB',2)],
+#    },
 
 #--------------------------------------------------------------------------------------
 
@@ -111,7 +158,7 @@ tests = [
 
 ]
 
-watch = ['out','PORTB']
+watch = ['out','PORTB','state','prev','PORTA','toggle','restart']
 
 
 # Optionally you can add a set of "watch" variables these need to be global or static and may need
